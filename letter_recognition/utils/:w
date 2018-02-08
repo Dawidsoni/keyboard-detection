@@ -40,7 +40,9 @@ def create_chunked_data(image, dim_chunk_count):
     else:
         image = image.resize((int(image.size[0] * float(dim_size) / image.size[1]), dim_size))
     chunked_data = get_paded_image(np.array(image, dtype=np.float64))
-    data_shape = chunked_data.shape
-    chunked_data = np.split(chunked_data, data_shape[0] / 32)
-    chunked_data = map(lambda x: np.split(x, data_shape[1] / 32, axis=1), chunked_data)
+    chunked_data = np.array_split(chunked_data, image.size[0] / 32)
+    chunked_data = map(lambda x: np.array_split(x, image.size[1] / 32, axis=1), chunked_data)
+    for it in chunked_data:
+        for in_it in it:
+            print(in_it.shape)
     return np.array(chunked_data)
