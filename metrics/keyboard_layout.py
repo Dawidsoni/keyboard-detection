@@ -1,9 +1,14 @@
 import pickle
+import string
 
 class KeyboardLayout:
+    STABLE_LAYOUT = "stable"
+    ROTATED_LAYOUT = "rotated"
+
     def __init__(self, layout_file, min_scale=0.75, max_scale=5.0):
         layout_obj = pickle.load(open(layout_file, 'r'))
         self.layout_name = layout_obj['layout_name']
+        self.layout_path = layout_obj['layout_path']
         self.layout_type = layout_obj['layout_type']
         self.letter_coords = layout_obj['letters']
         self.min_scale = min_scale
@@ -38,3 +43,12 @@ class KeyboardLayout:
             if inside_func(coord['start_pos'], coord['end_pos']) and outside_func(coord['start_pos', coord['end_pos'):
                 return coord['letter']
         return ''
+
+    def is_stable_layout(self):
+        return self.layout_type == KeyboardLayout.STABLE_LAYOUT
+
+    def is_rotated_layout(self):
+        return self.layout_type == KeyboardLayout.ROTATED_LAYOUT
+
+    def get_layout_chars():
+        return string.ascii_uppercase + string.digits
