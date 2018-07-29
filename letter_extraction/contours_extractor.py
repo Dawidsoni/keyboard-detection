@@ -4,13 +4,14 @@ from . import ImageFragmentFilter, ImageFragmentExtractor, FragmentShaper, Extra
 class ContoursExtractor:
     DEFAULT_EXTRACT_PARAMS = ExtractFragmentParams(100, 10, 1.25)
 
-    def __init__(self, extract_params=None):
+    def __init__(self, contours_detector, extract_params=None):
+        self.contours_detector = contours_detector
         if extract_params is None:
             extract_params = ContoursExtractor.DEFAULT_EXTRACT_PARAMS
         self.extract_params = extract_params
 
-    def get_fragment_list(self, contours_detector, image):
-        contour_list = contours_detector.get_contours(image)
+    def get_fragment_list(self, image):
+        contour_list = self.contours_detector.get_contours(image)
         fragment_extractor = ImageFragmentExtractor(image, self.extract_params.extract_scale)  
         image_fragment_filter = ImageFragmentFilter(image, self.extract_params)    
         fragment_shaper = FragmentShaper()
