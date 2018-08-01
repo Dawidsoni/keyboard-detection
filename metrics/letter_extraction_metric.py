@@ -1,30 +1,66 @@
 from . import KeyboardLayout
 
 class LetterExtractionMetric:
-    def __init__(self, keyboard_layouts):
-        self.keyboard_layouts = keyboard_layouts
+    @staticmethod
+    def _get_detected_letters(layout, fragment_extractor):
+        fragment_list = fragment_extractor.get_fragment_list(layout.get_image())
+        letter_coords = map(lambda x: x[0], fragment_list)
+        return map(lambda x: layout.find_letter(x['start_pos'], x['end_pos']), letter_coords)
 
-    def _add_real_letters(self, layout, letter_coords):
-        for letter_coord in letter_coords:
-            letter_coord['letter'] = layout.find_letter(letter_coord['start_pos'], letter_coord['end_pos'])
+    @staticmethod
+    def _get_coefficient_of_coverage(detected_letters):
+        return len(filter(lambda x: x is not None, detected_letters)) / float(len(detected_letters))
 
-    def _test_layouts(self, layouts, extract_func):
-        detected_letters = []
+    @staticmethod
+    def _get_all_letters_coverage(detected_letters):
+        total_coverage = 0
+        layout_chars = KeyboardLayout.get_layout_chars()
+        for layout_char in layout_chars:
+            total_coverage += any([x == layout_char for x in detected_letters])
+        return total_coverage / float(len(layout_chars))
+    
+    @staticmethod
+    def _get_average_letters_coverage(detected_letters):
+        total_coverage = 0
+        layout_chars = KeyboardLayout.get_layout_chars()
+        for layout_char in layout_chars:
+            total_coverage += len(filter(lambda x: x == layout_char, detected_letters))
+        return total_coverage / float(len(layout_chars))
+
+    @staticmethod
+    def get_rating(layout, fragment_extractor):
+        detected_letters = LetterExtractionMetric._get_detected_letters(layout, fragment_extractor)
+        coef_coverage = LetterExtractionMetric._get_coefficient_of_coverage(detected_letters)
+        all_lett_coverage = LetterExtractionMetric._get_all_letters_coverage(detected_letters)
+        av_lett_coverage = LetterExtractionMetric._get_average_letters_coverage(detected_letters)
+        score = all_lett_coverage * 100 + coef_coverage * 10 + av_lett_coverage 
+        return {
+            'coef_coverage': coef_coverage,
+            'all_lett_coverage': all_lett_coverage,
+            'av_lett_coverage': av_lett_coverage,
+            'score': score
+        }
+
+    @staticmethod
+    def test_layouts(layouts, fragment_extractor):
+        total_score = 0
         for layout in layouts:
-            letter_coords = extract_func(layout['filepath'])
-            detected_letters += map(lambda x: layout.find_letter(x['start_pos'], x['end_pos']), letter_coords)
-        for layout_char in KeyboardLayout.get_layout_chars():
-            char_elements = filter(lambda x: x == layout_char, detected_letters)
-            print("Elements for {0}: {1}".format(layout_char, len(char_elements)))
-        empty_chars = filter(lambda x: x not in KeyboardLayout.get_layout_chars(), detected_letters)
-        print("Letters are {0} of {1} of all detected coords".format(len(empty_chars), len(detected_letters))
+            rating = LetterExtractionMetric.get_rating(layout, fragment_extractor)
+            total_score += rating['score']
+            print("{}: {}".format(layout.layout_name, rating))
+        print("Total score: {}".format(total_score))
 
-    def test_extraction_method(self, extract_func):
-        stable_layouts = filter(lambda x: x.is_stable_layout(), self.keyboard_layouts)
-        rotated_layouts = filter(lambda x: x.is_rotated_layout(), self.keyboard_layouts)
+    @staticmethod
+    def score_layouts(layouts, fragment_extractor):
+        return sum(map(lambda x: LetterExtractionMetric.get_rating(x, fragment_extractor)['score'], layouts))
+
+    @staticmethod
+    def test_grouped_layouts(layouts, fragment_extractor):
+        stable_layouts = filter(lambda x: x.is_stable_layout(), layouts)
+        rotated_layouts = filter(lambda x: x.is_rotated_layout(), layouts)
         print("Stable layouts:")
-        self._test_layouts(stable_layouts, extract_func)
+        LetterExtractionMetric.test_layouts(stable_layouts, fragment_extractor)
         print("Rotated layouts:")
-        self._test_layouts(rotated_layouts, extract_func)
+        LetterExtractionMetric.test_layouts(rotated_layouts, fragment_extractor)
 
         
