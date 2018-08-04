@@ -40,7 +40,7 @@ class ModelTrainer:
             yield (data_var, target_var)
     
     def print_accuracy(self, data_name, pred_data, target_data):
-        accuracy = pred_data.eq(target_data).sum() / float(len(pred_data)) * 100
+        accuracy = pred_data.eq(target_data).sum().float() / float(len(pred_data)) * 100
         print("Accuracy (%s): %.3f" % (data_name, accuracy))    
     
     def train(self, optimizer, iter_count):
@@ -54,7 +54,7 @@ class ModelTrainer:
             optimizer.step()   
             if i % 10 == 0:
                 self.print_accuracy("Train set", train_pred.data.max(1)[1], train_target.data)
-                print("Loss: %.4f" % (loss.data[0]))
+                print("Loss: %.4f" % (loss.data))
                 torch.save(self.model.state_dict(), "{0}.pt".format(self.exp_name))
                 print("\n")
 

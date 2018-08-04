@@ -6,7 +6,7 @@ class KeyboardLayout:
     STABLE_LAYOUT = "stable"
     ROTATED_LAYOUT = "rotated"
 
-    def __init__(self, layout_file, path_prefix='', min_scale=0.75, max_scale=5.0):
+    def __init__(self, layout_file, path_prefix='', min_scale=0.9, max_scale=4.0):
         layout_obj = pickle.load(open(layout_file, 'r'))
         self.layout_name = layout_obj['layout_name']
         self.layout_path = layout_obj['filepath']
