@@ -27,3 +27,19 @@ def get_output_data(model, image_data):
     output_data = model(var_data)
     return output_data.cpu().data.numpy()
 
+def get_above_threshold_for_letter(pred_list, letter, thres):
+    filtered_data = []
+    for pred in pred_list:
+        ind = np.argsort(pred['output'])[-1]
+        if encode_class(ind) != letter:
+            continue
+        if np.exp(pred['output'][ind]) < thres:
+            continue
+        filtered_data.append(pred)
+    return filtered_data
+
+def get_all_above_threshold(pred_list, thres):
+    letter_map = {}
+    for letter in list(string.ascii_uppercase + string.digits):
+        letter_map[letter] = get_above_threshold_for_letter(pred_list, letter, thres)
+    return letter_map

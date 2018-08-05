@@ -2,7 +2,7 @@ import cv2
 from . import ImageFragmentFilter, ImageFragmentExtractor, FragmentShaper, ExtractFragmentParams
 
 class ContoursExtractor:
-    DEFAULT_EXTRACT_PARAMS = ExtractFragmentParams(100, 10, 1.25)
+    DEFAULT_EXTRACT_PARAMS = ExtractFragmentParams(150, 20, 1.6)
 
     def __init__(self, contours_detector, extract_params=None):
         self.contours_detector = contours_detector

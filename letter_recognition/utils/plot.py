@@ -30,18 +30,3 @@ def plot_images_with_output(image_data, output_data):
         prob_func = (lambda x: np.exp(output_data[i, x]))
         print(prob_func(ind1), prob_func(ind2), prob_func(ind3))
         plot_image(image_data[i, :, :, :].reshape(32, 32))
-
-def plot_letter_above_threshold(image_data, output_data, letter, thres):
-    output_ind = np.argsort(output_data)
-    for i in range(image_data.shape[0]):
-        ind = output_ind[i, -1]
-        if encode_class(ind) != letter:
-            continue
-        if np.exp(output_data[i, ind]) < thres:
-            continue
-        plot_image(image_data[i, :, :, :].reshape(32, 32))
-    
-def plot_all_above_threshold(image_data, output_data, thres):
-    for letter in list(string.ascii_uppercase + string.digits):
-        print(letter)
-        plot_letter_above_threshold(image_data, output_data, letter, thres)
