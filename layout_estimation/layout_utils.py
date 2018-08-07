@@ -17,9 +17,13 @@ class LayoutUtils:
         row_ind = LayoutUtils.get_letter_row_index(letter)
         return LayoutUtils.LETTER_ROWS[row_ind].index(letter)
 
+    @staticmethod
+    def get_letter_dir_dist(letter1, letter2):
+        return LayoutUtils.get_letter_pos(letter1) - LayoutUtils.get_letter_pos(letter2)
+
     @staticmethod 
     def get_letter_dist(letter1, letter2):
-        return abs(LayoutUtils.get_letter_pos(letter1) - LayoutUtils.get_letter_pos(letter2))
+        return abs(LayoutUtils.get_letter_dir_dist(letter1, letter2))
 
     @staticmethod 
     def get_moved_matching_letter(letter, offset):

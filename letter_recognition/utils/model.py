@@ -35,6 +35,7 @@ def get_above_threshold_for_letter(pred_list, letter, thres):
             continue
         if np.exp(pred['output'][ind]) < thres:
             continue
+        pred['letter'] = letter
         filtered_data.append(pred)
     return filtered_data
 
