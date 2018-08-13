@@ -18,7 +18,7 @@ def test_extract_params(contours_detector):
     best_params = None
     for min_scale in [100, 200]:
         for max_scale in [20, 10]:
-            for extract_scale in [0.8, 0.9, 1.0, 1.1, 1.15, 1.2, 1.25, 1.3, 1.4, 1.5]:
+            for extract_scale in [1.0, 1.1, 1.15, 1.2, 1.25, 1.3, 1.4, 1.5, 1.6, 1.7]:
                 try:
                     extract_params = ExtractFragmentParams(min_scale, max_scale, extract_scale)
                     score = test_contours_extractor(contours_detector, extract_params)
