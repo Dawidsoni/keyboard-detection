@@ -7,7 +7,7 @@ edge_params_names = ['min_edge_thres', 'max_edge_thres', 'retr_type', 'retr_appr
 EdgeParams = namedtuple('EdgeParams', edge_params_names)
 
 class EdgeDetector:
-    DEFAULT_DET_PARAMS = EdgeParams(75, 200, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE, 10, 1)
+    DEFAULT_DET_PARAMS = EdgeParams(50, 170, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE, 3, 1)
 
     def __init__(self, det_params=None):
         if det_params is None:

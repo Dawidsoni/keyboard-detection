@@ -16,5 +16,9 @@ class ImageFragmentExtractor:
         width, height = max(width, height), max(width, height)
         start_x, end_x = self.get_scaled_size(start_x, start_x + width)
         start_y, end_y = self.get_scaled_size(start_y, start_y + height)
+        if start_x > end_x:
+            start_x, end_x = end_x, start_x 
+        if start_y > end_y:
+            start_y, end_y = end_y, start_y
         fragment_pos = {'start_pos': (start_x, start_y), 'end_pos': (end_x, end_y)}
         return (fragment_pos, self.image[start_y:end_y, start_x:end_x, :])

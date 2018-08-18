@@ -25,6 +25,10 @@ class ChunkExtractor:
             for col_ind, col_data in enumerate(row_data):
                 start_x, start_y = row_ind * chunk_size, col_ind * chunk_size
                 end_x, end_y = start_x + chunk_size, start_y + chunk_size
+                if start_x > end_x:
+                    start_x, end_x = end_x, start_x
+                if start_y > end_y:
+                    start_y, end_y = end_y, start_y
                 pos_data = {'start_pos': (start_x, start_y), 'end_pos': (end_x, end_y)}
                 chunked_data[row_ind][col_ind] = (pos_data, chunked_data[row_ind][col_ind])
         return [item for row in chunked_data for item in row]

@@ -5,6 +5,7 @@ class ImageFragmentFilter:
         self.image = image
         self.extract_params = extract_params
         self.filter_radius = filter_radius
+        self.image_point_filter = ImagePointFilter(filter_radius)
 
     def get_min_fragment_size(self):
         return int(max(self.image.shape[0], self.image.shape[1]) / self.extract_params.min_scale)

@@ -33,7 +33,7 @@ class LetterExtractionMetric:
         coef_coverage = LetterExtractionMetric._get_coefficient_of_coverage(detected_letters)
         all_lett_coverage = LetterExtractionMetric._get_all_letters_coverage(detected_letters)
         av_lett_coverage = LetterExtractionMetric._get_average_letters_coverage(detected_letters)
-        score = all_lett_coverage * 90 + coef_coverage * 9 + min(1, av_lett_coverage) 
+        score = all_lett_coverage * 50 + coef_coverage * 50
         return {
             'coef_coverage': coef_coverage,
             'all_lett_coverage': all_lett_coverage,

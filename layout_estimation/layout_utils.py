@@ -2,6 +2,10 @@ class LayoutUtils:
     LETTER_ROWS = ['1234567890', 'QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 
     @staticmethod
+    def get_letter_rows():
+        return LayoutUtils.LETTER_ROWS
+
+    @staticmethod
     def get_row_letters_map():
         return {i: LayoutUtils.LETTER_ROWS[i] for i in range(len(LayoutUtils.LETTER_ROWS))}
 

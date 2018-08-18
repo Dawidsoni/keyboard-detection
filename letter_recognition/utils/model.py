@@ -33,9 +33,11 @@ def get_above_threshold_for_letter(pred_list, letter, thres):
         ind = np.argsort(pred['output'])[-1]
         if encode_class(ind) != letter:
             continue
-        if np.exp(pred['output'][ind]) < thres:
+        pred_pbp = np.exp(pred['output'][ind])
+        if pred_pbp < thres:
             continue
         pred['letter'] = letter
+        pred['pbp'] = pred_pbp
         filtered_data.append(pred)
     return filtered_data
 
