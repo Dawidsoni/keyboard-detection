@@ -15,17 +15,18 @@ class ModelTrainer:
         self.batch_size = batch_size
         self.char_list = [' '] + list(string.ascii_uppercase + string.digits)
 
-    def map_letter_to_target(self, letter):
+    def map_image_type_to_target(self, image_type):
+        (letter, angle_bucket) = image_type
         if letter not in self.char_list:
             letter = ' '
-        return self.char_list.index(letter)    
+        return self.char_list.index(letter) + len(self.char_list) * angle_bucket   
 
     def generate_images(self, image_count):
         data_list = []
         target_list = []
         for i in range(image_count):
-            letter, data = self.image_generator.generate_image()
-            target_list.append(self.map_letter_to_target(letter))        
+            image_type, data = self.image_generator.generate_image()
+            target_list.append(self.map_image_type_to_target(image_type))        
             data_list.append(data.flatten())
         data_arr = np.array(data_list, dtype=np.float64)
         target_arr = np.array(target_list, dtype=np.int64)

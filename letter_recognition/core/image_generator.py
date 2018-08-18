@@ -1,6 +1,7 @@
 import random
 import cv2
 import imutils
+import math
 from PIL import ImageFont, ImageDraw, ImageOps, Image  
 import numpy as np
 from . import ImageParamsGenerator
@@ -11,6 +12,7 @@ class ImageGenerator:
     IMAGE_SIZE = 32
     ROTATE_OFFSET = 8
     NOISE_OFFSET = 40
+    ANGLE_BUCKET_SIZE = 10
     
     def __init__(self, max_color_diff, rotate_text=False, empty_text=False):
         self.params_generator = ImageParamsGenerator(max_color_diff, rotate_text, empty_text)
@@ -129,4 +131,5 @@ class ImageGenerator:
         params = self.params_generator.generate_image_params()
         image = self.get_plain_image(params)
         image = self.get_blurred_image(image, params)
-        return (params.text, self.get_coloured_image(image))
+        angle_bucket = int(math.floor(params.angle / ImageGenerator.ANGLE_BUCKET_SIZE))
+        return ((params.text, angle_bucket), self.get_coloured_image(image))
