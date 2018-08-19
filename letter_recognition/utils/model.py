@@ -8,13 +8,13 @@ import numpy as np
 def load_state(filename, model_obj):
     model_obj.load_state_dict(torch.load(filename))
 
-def load_base_dense_net(filename, layer_count):
-    model = BaseDenseNet(12, layer_count, 0.5, 37, True).cuda()
+def load_base_dense_net(filename, layer_count, class_count):
+    model = BaseDenseNet(12, layer_count, 0.5, class_count, True).cuda()
     load_state(filename, model)
     return model
 
-def load_conv_dense_net(filename, layer_count):
-    model = ConvDenseNet(12, layer_count, 0.5, 37, True).cuda()
+def load_conv_dense_net(filename, layer_count, class_count):
+    model = ConvDenseNet(12, layer_count, 0.5, class_count, True).cuda()
     load_state(filename, model)
     return model
 
