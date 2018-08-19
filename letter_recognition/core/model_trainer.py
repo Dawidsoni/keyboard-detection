@@ -13,13 +13,13 @@ class ModelTrainer:
         self.model = model
         self.image_generator = image_generator
         self.batch_size = batch_size
-        self.char_list = [' '] + list(string.ascii_uppercase + string.digits)
+        self.char_list = list(string.ascii_uppercase + string.digits)
 
     def map_image_type_to_target(self, image_type):
         (letter, angle_bucket) = image_type
         if letter not in self.char_list:
-            letter = ' '
-        return self.char_list.index(letter) + len(self.char_list) * angle_bucket   
+            return 0
+        return 1 + self.char_list.index(letter) + len(self.char_list) * angle_bucket   
 
     def generate_images(self, image_count):
         data_list = []

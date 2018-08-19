@@ -102,7 +102,7 @@ class ImageParamsGenerator:
         if self.rotate_text == False:
             return 0
         if text in ['6', '9', 'W', 'M']:
-            return random.choice(range(-45, 46))    
+            return random.choice(range(0, 45) + range(315, 359))
         return random.choice(range(0, 359))
     
     def generate_noise_count(self, text):
