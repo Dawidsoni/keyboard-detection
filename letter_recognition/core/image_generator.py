@@ -6,6 +6,7 @@ import numpy as np
 from . import ImageParamsGenerator
 from . import NoiseGenerator
 from . import ShapeGenerator
+from . import EdgeGenerator
 
 class ImageGenerator:
     IMAGE_SIZE = 32
@@ -45,6 +46,7 @@ class ImageGenerator:
         text_image = self.get_noisy_image(params, (self.IMAGE_SIZE, self.IMAGE_SIZE)) 
         draw_pos = self.get_draw_position(params)
         ImageDraw.Draw(rotate_image).text(draw_pos, params.text, params.color, params.font)
+        EdgeGenerator(rotate_image, params).generate_edges()
         rotate_image = rotate_image.rotate(params.angle)
         rotate_image = rotate_image.crop(self.get_crop_coordinates())
         text_image.paste(rotate_image, self.get_paste_position(params.pos))
@@ -68,32 +70,24 @@ class ImageGenerator:
             return 2.5
             
     def get_gaussian_blur_size(self, scale):
-        if scale <= 0.4:
-            return random.choice([0, 1, 3])
-        elif scale <= 0.5:
-            return random.choice([0, 1, 3, 5])
-        elif scale <= 0.6:
-            return random.choice([1, 3, 5, 7])
-        elif scale <= 0.75:
-            return random.choice([1, 3, 5, 7])
-        elif scale <= 0.9:
-            return random.choice([1, 5, 9, 13])
-        else:
-            return random.choice([5, 9, 13, 17])
-
-    def get_uniform_blur_size(self, scale):
-        if scale <= 0.4:
-            return random.choice([0, 1])
-        elif scale <= 0.5:
-            return random.choice([0, 1, 2, 3])
-        elif scale <= 0.6:
+        if scale <= 0.6:
             return random.choice([1, 2, 3, 4])
         elif scale <= 0.75:
-            return random.choice([2, 3, 4, 5])
+            return random.choice([1, 2, 3, 4 ,5])
         elif scale <= 0.9:
-            return random.choice([3, 4, 5, 6])
+            return random.choice([1, 2, 3, 4, 5, 6])
         else:
-            return random.choice([4, 5, 6, 7])
+            return random.choice([1, 2, 3, 4, 5, 6, 7])
+
+    def get_uniform_blur_size(self, scale):
+        if scale <= 0.6:
+            return random.choice([1, 2, 3])
+        elif scale <= 0.75:
+            return random.choice([1, 2, 3, 4])
+        elif scale <= 0.9:
+            return random.choice([1, 2, 3, 4, 5])
+        else:
+            return random.choice([1, 2, 3, 4, 5, 6])
 
     def scale_text_blur(self, blur, text):
         if text in ['1', 'I', '{', '}', '(', ')', '[', ']', '$']:

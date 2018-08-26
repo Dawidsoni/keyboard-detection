@@ -1,0 +1,26 @@
+keyboard1: {'av_lett_coverage': 2.5277777777777777, 'score': 88.59797822706065, 'coef_coverage': 0.01088646967340591, 'all_lett_coverage': 0.9722222222222222}
+keyboard3: {'av_lett_coverage': 2.6944444444444446, 'score': 88.71576866040535, 'coef_coverage': 0.02397429560059318, 'all_lett_coverage': 0.9722222222222222}
+keyboard3: {'av_lett_coverage': 2.861111111111111, 'score': 91.07614588467226, 'coef_coverage': 0.008460653852472482, 'all_lett_coverage': 1.0}
+keyboard4: {'av_lett_coverage': 1.3888888888888888, 'score': 81.4390243902439, 'coef_coverage': 0.04878048780487805, 'all_lett_coverage': 0.8888888888888888}
+keyboard5: {'av_lett_coverage': 3.0833333333333335, 'score': 89.60631229235881, 'coef_coverage': 0.12292358803986711, 'all_lett_coverage': 0.9722222222222222}
+keyboard6: {'av_lett_coverage': 2.9722222222222223, 'score': 89.10718789407314, 'coef_coverage': 0.06746532156368222, 'all_lett_coverage': 0.9722222222222222}
+keyoard8: {'av_lett_coverage': 2.861111111111111, 'score': 91.78096040438079, 'coef_coverage': 0.08677337826453244, 'all_lett_coverage': 1.0}
+keyboard8: {'av_lett_coverage': 3.0277777777777777, 'score': 92.07802197802198, 'coef_coverage': 0.11978021978021978, 'all_lett_coverage': 1.0}
+keyboard9: {'av_lett_coverage': 3.0555555555555554, 'score': 89.41836734693878, 'coef_coverage': 0.10204081632653061, 'all_lett_coverage': 0.9722222222222222}
+keyboard10: {'av_lett_coverage': 3.7777777777777777, 'score': 91.70385278895917, 'coef_coverage': 0.078205865439908, 'all_lett_coverage': 1.0}
+keyboard11: {'av_lett_coverage': 3.0555555555555554, 'score': 89.26388888888889, 'coef_coverage': 0.08487654320987655, 'all_lett_coverage': 0.9722222222222222}
+keyboard12: {'av_lett_coverage': 2.4722222222222223, 'score': 86.4027149321267, 'coef_coverage': 0.04474610356963298, 'all_lett_coverage': 0.9444444444444444}
+keyboard13: {'av_lett_coverage': 2.5277777777777777, 'score': 91.63, 'coef_coverage': 0.07, 'all_lett_coverage': 1.0}
+keyboard14: {'av_lett_coverage': 2.888888888888889, 'score': 84.24167987321711, 'coef_coverage': 0.08240887480190175, 'all_lett_coverage': 0.9166666666666666}
+keyboard15: {'av_lett_coverage': 2.9722222222222223, 'score': 88.82121414276185, 'coef_coverage': 0.03569046030687125, 'all_lett_coverage': 0.9722222222222222}
+keyboard16: {'av_lett_coverage': 3.611111111111111, 'score': 91.59360730593608, 'coef_coverage': 0.06595636732623034, 'all_lett_coverage': 1.0}
+keyboard17: {'av_lett_coverage': 1.8055555555555556, 'score': 88.58388299397762, 'coef_coverage': 0.009320332664181245, 'all_lett_coverage': 0.9722222222222222}
+keyboard18: {'av_lett_coverage': 3.111111111111111, 'score': 92.0712008501594, 'coef_coverage': 0.11902231668437832, 'all_lett_coverage': 1.0}
+keyboard19: {'av_lett_coverage': 2.888888888888889, 'score': 91.64109589041095, 'coef_coverage': 0.07123287671232877, 'all_lett_coverage': 1.0}
+keyboard20: {'av_lett_coverage': 2.6666666666666665, 'score': 86.29061553985873, 'coef_coverage': 0.03229061553985873, 'all_lett_coverage': 0.9444444444444444}
+keyboard21: {'av_lett_coverage': 1.8888888888888888, 'score': 91.72340425531915, 'coef_coverage': 0.08037825059101655, 'all_lett_coverage': 1.0}
+keyboard22: {'av_lett_coverage': 2.9722222222222223, 'score': 92.6405451448041, 'coef_coverage': 0.18228279386712096, 'all_lett_coverage': 1.0}
+keyboard23: {'av_lett_coverage': 2.8333333333333335, 'score': 86.52099886492623, 'coef_coverage': 0.05788876276958002, 'all_lett_coverage': 0.9444444444444444}
+keyboard24: {'av_lett_coverage': 2.138888888888889, 'score': 89.08978723404255, 'coef_coverage': 0.06553191489361702, 'all_lett_coverage': 0.9722222222222222}
+keyboard25: {'av_lett_coverage': 3.0555555555555554, 'score': 89.0082135523614, 'coef_coverage': 0.05646817248459959, 'all_lett_coverage': 0.9722222222222222}
+Total score: 2233.04646934

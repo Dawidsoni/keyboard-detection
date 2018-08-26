@@ -25,7 +25,7 @@ class TripleLayoutEstimator:
         if row_ind1 != row_ind2:
             raise Exception("Row predictions should have the same row number")
         letter_dist = LayoutUtils.get_letter_dist(row_pred1['letter'], row_pred2['letter'])
-        self.layout_letter_dist = abs(row_pred1['middle'] - row_pred2['middle']) / letter_dist 
+        self.layout_letter_dist = (row_pred1['middle'] - row_pred2['middle']) / letter_dist 
         self.update_row_from_pred(row_pred1)
 
     def update_row_from_angle(self, src_row_ind, dst_row_ind):

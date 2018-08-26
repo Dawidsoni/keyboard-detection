@@ -8,8 +8,8 @@ params_list = ['pos', 'scale', 'is_empty', 'text', 'font', 'background', 'color'
 ImageParamsTuple = namedtuple('ImageParams', params_list)
 
 class ImageParamsGenerator:        
-    DEFAULT_FONT_SIZE = 40
-    MIN_FONT_SCALE = 0.275
+    DEFAULT_FONT_SIZE = 38
+    MIN_FONT_SCALE = 0.5
 
     def __init__(self, max_color_diff, rotate_text=False, empty_text=False):
         self.max_color_diff = max_color_diff
@@ -18,7 +18,7 @@ class ImageParamsGenerator:
         self.font_proxy = FontProxy()
 
     def generate_is_empty(self):
-        return (random.randint(1, 30) == 1)
+        return (random.randint(1, 20) == 1)
 
     def generate_empty_text(self):
         if random.choice([False, True]):
@@ -60,7 +60,7 @@ class ImageParamsGenerator:
             return random.uniform(self.MIN_FONT_SCALE, 1.0)
 
     def generate_position(self, scale):
-        max_pos = int(8 - ((scale - 0.275) / 0.675) * 8)
+        max_pos = int(10 - ((scale - 0.275) / 0.675) * 8)
         pos_x = random.choice(range(-max_pos, max_pos + 1))
         pos_y = random.choice(range(-max_pos, max_pos + 1))   
         return (pos_x, pos_y)

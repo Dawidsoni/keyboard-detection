@@ -43,10 +43,13 @@ class LetterExtractionMetric:
 
     @staticmethod
     def test_layouts(layouts, fragment_extractor):
-        total_score = 0
+        total_score = {}
         for layout in layouts:
             rating = LetterExtractionMetric.get_rating(layout, fragment_extractor)
-            total_score += rating['score']
+            for key, val in rating.iteritems():
+                if key not in total_score:
+                    total_score[key] = 0
+                total_score[key] += rating[key]
             print("{}: {}".format(layout.layout_name, rating))
         print("Total score: {}".format(total_score))
 

@@ -4,7 +4,7 @@ import numpy as np
 import string
 from .model import encode_class
 
-def save_generator_sample(image_generator, output_file, row_size=20):
+def save_generator_sample(image_generator, output_file, row_size=5):
     image_data = []
     for i in range(row_size ** 2):
         _, image = image_generator.generate_image()
